@@ -4,8 +4,8 @@ import jails.Process._
 object Test {	
   def main(args: Array[String]) {
 
-  	val hallo = (><("lydia", "x") |> Lydia("x", "simon")) &
-  							(><("simon", "x") |> Simon("x", "lydia")) in <>("lydia", "hallo")
+  	val hallo = (><("achim", "x") |> Achim("x", "dirk")) &
+  							(><("dirk", "x") |> Dirk("x", "achim")) in <>("achim", "hallo")
 
   	hallo.start
   		
@@ -17,18 +17,18 @@ object Test {
   }
 }
 
-case class Lydia(inputName: String, linkName: String) extends MyProcess {
+case class Achim(inputName: String, linkName: String) extends MyProcess {
 	def body {
 	  Thread.sleep(1000)
-	  println("Lydia: " + rv(inputName))
+	  println("Achim: " + rv(inputName) + " " + linkName)
 	  dv(linkName) ! rv(inputName)
 	}
 }
 
-case class Simon(inputName: String, linkName: String) extends MyProcess {
+case class Dirk(inputName: String, linkName: String) extends MyProcess {
 	def body {
 	  Thread.sleep(1000)
-	  println("Simon: " + rv(inputName))
+	  println("Dirk: " + rv(inputName) + " " + linkName)
 	  dv(linkName) ! rv(inputName)
 	}
 }
